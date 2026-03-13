@@ -1,0 +1,455 @@
+.login-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 20px;
+  overflow: hidden;
+}
+
+.login-page::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(circle at 20% 50%, rgba(34, 211, 238, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(139, 92, 246, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 40% 20%, rgba(59, 130, 246, 0.1) 0%, transparent 50%);
+  animation: bgPulse 8s ease-in-out infinite;
+}
+
+@keyframes bgPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.8; transform: scale(1.1); }
+}
+
+.login-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.floating-particle {
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(34, 211, 238, 0.3), transparent);
+  animation: float 6s ease-in-out infinite;
+  filter: blur(40px);
+}
+
+.p1 { 
+  top: 10%; 
+  left: 10%; 
+  animation-delay: 0s;
+  background: radial-gradient(circle, rgba(34, 211, 238, 0.4), transparent);
+}
+.p2 { 
+  top: 60%; 
+  right: 15%; 
+  animation-delay: 2s;
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.4), transparent);
+}
+.p3 { 
+  bottom: 20%; 
+  left: 20%; 
+  animation-delay: 4s;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.4), transparent);
+}
+
+.login-container {
+  position: relative;
+  z-index: 1;
+  max-width: 450px;
+  width: 100%;
+  animation: slideUp 0.6s ease-out;
+}
+
+.logo-section {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.logo-circle {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto 20px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #3b82f6, #22d3ee);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 
+    0 0 60px rgba(34, 211, 238, 0.8),
+    0 0 100px rgba(34, 211, 238, 0.4),
+    inset 0 0 20px rgba(255, 255, 255, 0.2);
+  animation: logoGlow 3s ease-in-out infinite;
+  position: relative;
+}
+
+.logo-circle::before {
+  content: '';
+  position: absolute;
+  inset: -5px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #22d3ee, #3b82f6, #8b5cf6);
+  opacity: 0.5;
+  filter: blur(10px);
+  animation: rotate 4s linear infinite;
+}
+
+@keyframes logoGlow {
+  0%, 100% { 
+    box-shadow: 
+      0 0 60px rgba(34, 211, 238, 0.8),
+      0 0 100px rgba(34, 211, 238, 0.4),
+      inset 0 0 20px rgba(255, 255, 255, 0.2);
+  }
+  50% { 
+    box-shadow: 
+      0 0 80px rgba(34, 211, 238, 1),
+      0 0 120px rgba(34, 211, 238, 0.6),
+      inset 0 0 30px rgba(255, 255, 255, 0.3);
+  }
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.logo-inner {
+  font-size: 42px;
+  font-weight: bold;
+  color: #fff;
+  position: relative;
+  z-index: 1;
+  text-shadow: 
+    0 0 10px rgba(255, 255, 255, 0.8),
+    0 0 20px rgba(34, 211, 238, 0.6);
+}
+
+.app-title {
+  font-size: 48px;
+  font-weight: 300;
+  letter-spacing: 4px;
+  margin-bottom: 10px;
+  background: linear-gradient(90deg, #fff, #22d3ee, #8b5cf6, #22d3ee, #fff);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 3s linear infinite;
+  filter: drop-shadow(0 0 20px rgba(34, 211, 238, 0.5));
+}
+
+@keyframes shimmer {
+  to { background-position: 200% center; }
+}
+
+.app-subtitle {
+  font-size: 16px;
+  color: #94a3b8;
+}
+
+.login-card {
+  background: rgba(15, 23, 42, 0.7);
+  border: 2px solid transparent;
+  border-radius: 24px;
+  padding: 40px;
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  box-shadow: 
+    0 20px 60px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(34, 211, 238, 0.3),
+    inset 0 0 40px rgba(34, 211, 238, 0.05);
+  position: relative;
+  overflow: hidden;
+}
+
+.login-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent,
+    rgba(34, 211, 238, 0.1),
+    transparent
+  );
+  animation: cardShine 3s linear infinite;
+}
+
+@keyframes cardShine {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.login-card h2 {
+  font-size: 28px;
+  margin-bottom: 10px;
+  color: #fff;
+}
+
+.card-subtitle {
+  font-size: 14px;
+  color: #94a3b8;
+  margin-bottom: 30px;
+}
+
+.form-group {
+  margin-bottom: 25px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 14px;
+  color: #e0e7ff;
+  margin-bottom: 8px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 14px 16px;
+  background: rgba(30, 41, 59, 0.6);
+  border: 2px solid rgba(34, 211, 238, 0.3);
+  border-radius: 10px;
+  color: #fff;
+  font-size: 15px;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: rgba(34, 211, 238, 0.8);
+  background: rgba(30, 41, 59, 0.8);
+  box-shadow: 
+    0 0 20px rgba(34, 211, 238, 0.3),
+    0 0 40px rgba(34, 211, 238, 0.1),
+    inset 0 0 20px rgba(34, 211, 238, 0.05);
+}
+
+.form-group input::placeholder {
+  color: #64748b;
+}
+
+.info-box {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(34, 211, 238, 0.1);
+  border: 1px solid rgba(34, 211, 238, 0.3);
+  border-radius: 10px;
+  padding: 12px 16px;
+  margin-bottom: 25px;
+}
+
+.info-icon {
+  font-size: 20px;
+}
+
+.info-box p {
+  font-size: 13px;
+  color: #94a3b8;
+  margin: 0;
+}
+
+.btn-primary {
+  width: 100%;
+  padding: 18px;
+  background: linear-gradient(135deg, #3b82f6, #22d3ee);
+  border: none;
+  border-radius: 12px;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 
+    0 10px 30px rgba(34, 211, 238, 0.4),
+    0 0 20px rgba(34, 211, 238, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s;
+}
+
+.btn-primary:hover::before {
+  left: 100%;
+}
+
+.btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 
+    0 15px 40px rgba(34, 211, 238, 0.6),
+    0 0 30px rgba(34, 211, 238, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.toggle-mode {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.toggle-mode button {
+  background: none;
+  border: none;
+  color: #22d3ee;
+  font-size: 14px;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.gov-portal-btn {
+  margin-top: 30px;
+  width: 100%;
+  padding: 14px;
+  background: rgba(139, 92, 246, 0.2);
+  border: 1px solid rgba(139, 92, 246, 0.4);
+  border-radius: 10px;
+  color: #c4b5fd;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.gov-portal-btn:hover {
+  background: rgba(139, 92, 246, 0.3);
+  border-color: rgba(139, 92, 246, 0.6);
+}
+
+@media (max-width: 768px) {
+  .app-title { font-size: 32px; }
+  .login-card { padding: 30px 25px; }
+}
+
+
+/* Holographic Effects */
+.info-box {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(34, 211, 238, 0.1);
+  border: 2px solid rgba(34, 211, 238, 0.4);
+  border-radius: 12px;
+  padding: 14px 18px;
+  margin-bottom: 25px;
+  position: relative;
+  overflow: hidden;
+}
+
+.info-box::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent 30%,
+    rgba(34, 211, 238, 0.1) 50%,
+    transparent 70%
+  );
+  animation: holoScan 3s linear infinite;
+}
+
+@keyframes holoScan {
+  0% { transform: translateX(-100%) translateY(-100%) rotate(0deg); }
+  100% { transform: translateX(100%) translateY(100%) rotate(360deg); }
+}
+
+.info-icon {
+  font-size: 24px;
+  position: relative;
+  z-index: 1;
+  animation: iconSpin 4s linear infinite;
+}
+
+@keyframes iconSpin {
+  0%, 90% { transform: rotate(0deg); }
+  95% { transform: rotate(15deg); }
+  100% { transform: rotate(0deg); }
+}
+
+/* Glitch Effect for Title */
+.app-title {
+  position: relative;
+}
+
+.app-title::before,
+.app-title::after {
+  content: 'Chat Nova';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, #fff, #22d3ee, #8b5cf6, #22d3ee, #fff);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  opacity: 0.8;
+}
+
+.app-title::before {
+  animation: glitch1 2.5s infinite;
+}
+
+.app-title::after {
+  animation: glitch2 2.5s infinite;
+}
+
+@keyframes glitch1 {
+  0%, 100% { 
+    transform: translate(0);
+    opacity: 0;
+  }
+  20% { 
+    transform: translate(-2px, 2px);
+    opacity: 0.8;
+  }
+  40% { 
+    transform: translate(-2px, -2px);
+    opacity: 0;
+  }
+}
+
+@keyframes glitch2 {
+  0%, 100% { 
+    transform: translate(0);
+    opacity: 0;
+  }
+  60% { 
+    transform: translate(2px, 2px);
+    opacity: 0.8;
+  }
+  80% { 
+    transform: translate(2px, -2px);
+    opacity: 0;
+  }
+}

@@ -1,0 +1,182 @@
+.hero {
+  min-height: 100vh;
+  position: relative;
+  padding: 60px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.floating-icon {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(34, 211, 238, 0.3), transparent);
+  border: 2px solid rgba(34, 211, 238, 0.5);
+  animation: float 6s ease-in-out infinite;
+}
+
+.icon-1 {
+  top: 15%;
+  right: 20%;
+  animation-delay: 0s;
+}
+
+.icon-2 {
+  top: 40%;
+  right: 10%;
+  animation-delay: 2s;
+}
+
+.icon-3 {
+  top: 25%;
+  right: 35%;
+  width: 40px;
+  height: 40px;
+  animation-delay: 4s;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  max-width: 1200px;
+  animation: slideUp 1s ease-out;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.logo-circle {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #3b82f6, #22d3ee);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 30px rgba(34, 211, 238, 0.6);
+  animation: pulse 3s ease-in-out infinite;
+}
+
+.logo-inner {
+  font-size: 32px;
+  font-weight: bold;
+  color: #fff;
+}
+
+.brand-name {
+  font-size: 48px;
+  font-weight: 300;
+  letter-spacing: 2px;
+  background: linear-gradient(90deg, #fff, #22d3ee);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-title {
+  font-size: 28px;
+  font-weight: 400;
+  line-height: 1.4;
+  margin-bottom: 20px;
+  color: #e0e7ff;
+}
+
+.hero-subtitle {
+  font-size: 18px;
+  color: #94a3b8;
+  line-height: 1.6;
+  margin-bottom: 50px;
+}
+
+.hero-visual {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  height: 300px;
+  margin: 0 auto;
+}
+
+.blockchain-stack {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  perspective: 1000px;
+}
+
+.stack-layer {
+  width: 200px;
+  height: 40px;
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.3), rgba(34, 211, 238, 0.3));
+  border: 2px solid rgba(34, 211, 238, 0.5);
+  border-radius: 8px;
+  margin-bottom: 15px;
+  transform-style: preserve-3d;
+  animation: float 4s ease-in-out infinite;
+  box-shadow: 0 10px 30px rgba(34, 211, 238, 0.3);
+}
+
+.layer-1 { animation-delay: 0s; }
+.layer-2 { animation-delay: 0.5s; }
+.layer-3 { animation-delay: 1s; }
+.layer-4 { animation-delay: 1.5s; }
+
+.floating-nodes {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.node {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(34, 211, 238, 0.6), rgba(59, 130, 246, 0.3));
+  border: 2px solid rgba(34, 211, 238, 0.8);
+  animation: float 5s ease-in-out infinite;
+}
+
+.node-1 {
+  top: 10%;
+  right: 15%;
+  animation-delay: 0s;
+}
+
+.node-2 {
+  bottom: 20%;
+  left: 10%;
+  animation-delay: 1.5s;
+}
+
+.node-3 {
+  top: 50%;
+  right: 5%;
+  width: 35px;
+  height: 35px;
+  animation-delay: 3s;
+}
+
+@media (max-width: 768px) {
+  .brand-name { font-size: 36px; }
+  .hero-title { font-size: 22px; }
+  .hero-subtitle { font-size: 16px; }
+}
