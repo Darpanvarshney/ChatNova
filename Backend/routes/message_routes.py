@@ -22,12 +22,15 @@ def send_message():
         "tx_hash": tx_hash
     }
 
-    # Send to receiver
+    print(f"Sending message from {sender} to room {receiver}: {message}")
+
+    # Send to receiver room only
     socketio.emit(
         "receive_message",
         message_data,
         room=receiver
     )
+    print(f"Emitted to room: {receiver}")
 
     # Send to government monitor
     socketio.emit(

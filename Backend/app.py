@@ -18,12 +18,13 @@ app.register_blueprint(user_routes)
 
 @socketio.on("join")
 def handle_join(data):
-
-    user_id = data["userId"]
+    user_id = data.get("userId")
+    if not user_id:
+        print("JOIN event missing userId")
+        return
 
     join_room(user_id)
-
-    print("USER JOINED:", user_id)
+    print(f"USER JOINED ROOM: '{user_id}'")
 
 
 @socketio.on("government_join")

@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react';
 import './GovPortal.css';
 import { io } from "socket.io-client";
 
-const socket = io("http://localhost:5000");
-
 const GovPortal = ({ onBack }) => {
 
   const [authenticated, setAuthenticated] = useState(false);
@@ -13,13 +11,12 @@ const GovPortal = ({ onBack }) => {
   const [messageCount, setMessageCount] = useState(0);
   const [threatCount, setThreatCount] = useState(0);
 
-  // SOCKET CONNECTION FOR GOVERNMENT MONITORING
   useEffect(() => {
+    const socket = io("http://localhost:5000");
 
     socket.emit("government_join");
 
-    socket.on("government_monitor", (data) => {
-
+    const handleMonitor = (data) => {
       const message = data.message.toLowerCase();
 
       let threat = "Low";
@@ -33,8 +30,7 @@ const GovPortal = ({ onBack }) => {
       ) {
         threat = "High";
         analysis = "Potential violent threat detected";
-      }
-      else if (
+      } else if (
         message.includes("meet") ||
         message.includes("plan") ||
         message.includes("location")
@@ -44,24 +40,27 @@ const GovPortal = ({ onBack }) => {
       }
 
       const newMessage = {
-        id: Date.now(),
+        id: `${Date.now()}-${Math.random()}`,
         encryptedContent: "ENC_" + btoa(data.message),
         timestamp: new Date().toLocaleTimeString(),
         blockchainHash: data.tx_hash,
         threatLevel: threat,
-        aiAnalysis: analysis
+        aiAnalysis: analysis,
       };
 
-      setMonitoredMessages(prev => [newMessage, ...prev]);
-
-      setMessageCount(prev => prev + 1);
-
+      setMonitoredMessages((prev) => [newMessage, ...prev]);
+      setMessageCount((prev) => prev + 1);
       if (threat === "High" || threat === "Medium") {
-        setThreatCount(prev => prev + 1);
+        setThreatCount((prev) => prev + 1);
       }
+    };
 
-    });
+    socket.on("government_monitor", handleMonitor);
 
+    return () => {
+      socket.off("government_monitor", handleMonitor);
+      socket.disconnect();
+    };
   }, []);
 
   const handleLogin = (e) => {

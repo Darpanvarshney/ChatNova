@@ -9,7 +9,7 @@ const Login = ({ onLogin, onGovPortal }) => {
     return 'anon_' + Math.random().toString(36).substr(2, 9);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const anonymousId = generateAnonymousId();
     const userData = {
@@ -17,7 +17,25 @@ const Login = ({ onLogin, onGovPortal }) => {
       anonymousId: anonymousId,
       publicKey: 'PK_' + Math.random().toString(36).substr(2, 16)
     };
-    onLogin(userData);
+
+    try {
+      const res = await fetch('http://localhost:5000/api/users', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          anonymousId: userData.anonymousId,
+          displayName: userData.username
+        })
+      });
+
+      const createdUser = await res.json();
+      onLogin({ ...userData, displayName: createdUser.displayName });
+    } catch (error) {
+      console.error('Failed to create user:', error);
+      onLogin(userData);
+    }
   };
 
   return (
