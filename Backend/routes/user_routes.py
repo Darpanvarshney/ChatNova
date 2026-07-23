@@ -23,6 +23,37 @@ users = [
 def get_users():
     return jsonify(users)
 
+@user_routes.route("/api/users/search", methods=["GET"])
+def search_users():
+    """Search users by displayName"""
+    query = request.args.get("q", "").strip().lower()
+    
+    if not query:
+        return jsonify([])
+    
+    results = [
+        u for u in users 
+        if query in u.get("displayName", "").lower()
+    ]
+    return jsonify(results)
+
+@user_routes.route("/api/users/<search_term>", methods=["GET"])
+def find_user_by_name(search_term):
+    """Find a user by displayName or anonymousId"""
+    search_term = search_term.strip().lower()
+    
+    # First try exact anonymousId match
+    for u in users:
+        if u.get("anonymousId").lower() == search_term:
+            return jsonify(u), 200
+    
+    # Then try displayName match (case-insensitive)
+    for u in users:
+        if search_term in u.get("displayName", "").lower():
+            return jsonify(u), 200
+    
+    return jsonify({"error": "User not found"}), 404
+
 @user_routes.route("/api/users", methods=["POST"])
 def create_user():
     data = request.get_json() or {}
